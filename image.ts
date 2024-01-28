@@ -6,7 +6,7 @@ import {
 
 export class ImageQuantizer {
   constructor(
-    private readonly colors = 17,
+    private readonly colors = 16,
     private readonly ditherMethod = 3,
     private readonly colorSpace = ColorSpace.sRGB,
   ) {}

@@ -1,6 +1,7 @@
 import {
   ImageMagick,
   initialize,
+  MagickFormat,
 } from "https://deno.land/x/imagemagick_deno@0.0.26/mod.ts";
 import { parse } from "https://deno.land/std@0.207.0/flags/mod.ts";
 import { ImageQuantizer } from "./image.ts";
@@ -25,8 +26,8 @@ for (const file of files) {
     // Save the quantized image
     if (!skip_quantized) {
       await Deno.writeFile(
-        file.toString().replace(/\.(.+?)$/, "-quantized.$1"),
-        image.write((x) => x),
+        file.toString().replace(/\.(.+?)$/, "-quantized.png"),
+        image.write(MagickFormat.Png24, (x) => x),
       );
     }
     const out = await Deno.create(
