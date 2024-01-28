@@ -19,8 +19,6 @@ for (const file of files) {
     if (s != null) {
       const ns = Number(s);
       await image.resize(ns, ns);
-    } else {
-      await image.resize(40, 40);
     }
     new ImageQuantizer().quantize(image);
     // Save the quantized image

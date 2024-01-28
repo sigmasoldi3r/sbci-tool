@@ -3,6 +3,7 @@ import {
   ImageMagick,
   IMagickImage,
 } from "https://deno.land/x/imagemagick_deno@0.0.26/mod.ts";
+import { print } from "./logging.ts";
 
 export class ImageQuantizer {
   constructor(
@@ -12,6 +13,7 @@ export class ImageQuantizer {
   ) {}
 
   quantize(image: IMagickImage) {
+    print("Quantizing image...");
     const ptr = ImageMagick._api._QuantizeSettings_Create();
     try {
       ImageMagick._api._QuantizeSettings_SetColors(ptr, this.colors);
@@ -23,6 +25,7 @@ export class ImageQuantizer {
       ImageMagick._api._MagickImage_Quantize(image._instance, ptr, 0);
     } finally {
       ImageMagick._api._QuantizeSettings_Dispose(ptr);
+      print("Done!");
     }
   }
 }
